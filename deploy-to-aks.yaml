@@ -10,7 +10,7 @@ variables:
   kubernetesCluster: akssimpledeploy20220117
 
 trigger:
-- master
+- masterXYZ
 
 pool:
   vmImage: ubuntu-latest
