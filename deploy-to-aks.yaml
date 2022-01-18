@@ -3,6 +3,13 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+
+variables:
+  azureSubscription: 'Visual Studio Enterprise Subscription (47154882-47a3-45ab-8c01-a9ce7f3f1abc)'
+  azureResourceGroup: akssimpledeploy20220117
+  kubernetesCluster: akssimpledeploy20220117
+
+container:
 trigger:
 - master
 
@@ -12,3 +19,9 @@ pool:
 steps:
 - task: HelmInstaller@0
   displayName: 'Install Helm 2.14.1'
+
+- task: HelmDeploy@0
+  displayName: 'helm init'
+  inputs:
+    command: init
+    canaryImage: true
