@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+- masterxyz
 
 pool:
   vmImage: ubuntu-latest
