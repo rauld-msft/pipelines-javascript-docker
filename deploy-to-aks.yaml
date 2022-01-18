@@ -9,7 +9,6 @@ variables:
   azureResourceGroup: akssimpledeploy20220117
   kubernetesCluster: akssimpledeploy20220117
 
-container:
 trigger:
 - master
 
