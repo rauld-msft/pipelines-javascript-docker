@@ -19,6 +19,7 @@ steps:
 
 - task: HelmInstaller@0
   inputs:
+    connectionType: Azure Resource Manager
     helmVersion: '2.14.1'
     installKubectl: true
 
