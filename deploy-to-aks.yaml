@@ -16,11 +16,24 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+
 - task: HelmInstaller@0
-  displayName: 'Install Helm 2.14.1'
+  inputs:
+    helmVersion: '2.14.1'
+    installKubectl: true
+
 
 - task: HelmDeploy@0
-  displayName: 'helm init'
   inputs:
-    command: init
-    canaryImage: true
+    azureContainerRegistry: 'akssimpledeploy20220117acr.azurecr.io'
+    connectionType: 'Azure Resource Manager'
+    azureSubscription: 'Visual Studio Enterprise Subscription (47154882-47a3-45ab-8c01-a9ce7f3f1abc)'
+    azureSubscriptionForACR: 'Visual Studio Enterprise Subscription (47154882-47a3-45ab-8c01-a9ce7f3f1abc)'
+    azureResourceGroup: 'akssimpledeploy20220117'
+    azureResourceGroupForACR: 'akssimpledeploy20220117'
+    kubernetesCluster: 'akssimpledeploy20220117'
+    namespace: 'default'
+    command: 'upgrade'
+    chartType: 'FilePath'
+    chartPath: '$(System.DefaultWorkingDirectory)/**/*.tgz'
+    releaseName: 'relName2134'
