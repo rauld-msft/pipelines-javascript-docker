@@ -37,3 +37,25 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+
+    - task: HelmInstaller@0
+      inputs:
+        connectionType: Azure Resource Manager
+        helmVersion: '2.14.1'
+        installKubectl: true
+
+
+    - task: HelmDeploy@0
+      inputs:
+        azureContainerRegistry: 'akssimpledeploy20220117acr.azurecr.io'
+        connectionType: 'Azure Resource Manager'
+        azureSubscription: 'Visual Studio Enterprise Subscription (47154882-47a3-45ab-8c01-a9ce7f3f1abc)'
+        azureSubscriptionForACR: 'Visual Studio Enterprise Subscription (47154882-47a3-45ab-8c01-a9ce7f3f1abc)'
+        azureResourceGroup: 'akssimpledeploy20220117'
+        azureResourceGroupForACR: 'akssimpledeploy20220117'
+        kubernetesCluster: 'akssimpledeploy20220117'
+        namespace: 'default'
+        command: 'upgrade'
+        chartType: 'FilePath'
+        chartPath: '$(System.DefaultWorkingDirectory)/**/*.tgz'
+        releaseName: 'relName2134'
